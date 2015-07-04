@@ -15,7 +15,7 @@ shinyServer(function(input, output, session){
          div(style="display:block; padding: 5px;",
             actionButton("singleparentbutton", "Single Parent", width=150),
             actionButton("studentbutton", "Student", width=150)),
-         div(style="display:block; padding: 5px; width: 500px; ",
+         div(style="display:block; padding: 5px;",
             actionButton("familybutton", "Family", width=150),
             actionButton("youngprofessionalbutton", "Young Professional", width=150)),
          div(style="display:block; padding: 5px;",
@@ -29,8 +29,8 @@ shinyServer(function(input, output, session){
    locations <- function(){
       sessionvars$page <- 2
       list(
-         leafletOutput("map1"),
-         div(actionButton("next1", "next"), style="display: inline-block; float: right; ")
+         leafletOutput("map1", height=550, width=442), p(),
+         div(actionButton("next1", "next"), style="display: inline-block; float: right;")
       )
    }
 
@@ -52,7 +52,7 @@ shinyServer(function(input, output, session){
       else if (sessionvars$profile=="student") selected <- c(3,12,5,14,16,11)
       else if (sessionvars$profile=="family") selected <- c(3,4,6,7,8)
       else if (sessionvars$profile=="custom") selected <- c()
-      list(h2(foo(sessionvars$profile)), checkboxGroupInput("choices", "",
+      list(h3(foo(sessionvars$profile)), checkboxGroupInput("choices", "",
          choices=list("Work"=1, "Supermarket"=2, "Sports clubs"=3,
             "School (specific)"=4, "Transport"=5, "Parking"=6, "Gym"=7,
             "Farmer's market"=8, "Daycare (for children)"=9, "Church"=10,
@@ -115,31 +115,31 @@ shinyServer(function(input, output, session){
    #avert your eyes...
    observeEvent(input$au1_map, {
       sessionvars$page <- 5
-      output$main <- renderUI(leafletOutput("suburbmap"))
+      output$main <- renderUI(leafletOutput("suburbmap", height=550, width=442))
       output$suburbmap <- renderLeaflet(fetchmap(1))
    })
 
    observeEvent(input$au2_map, {
       sessionvars$page <- 5
-      output$main <- renderUI(leafletOutput("suburbmap"))
+      output$main <- renderUI(leafletOutput("suburbmap", height=550, width=442))
       output$suburbmap <- renderLeaflet(fetchmap(2))
    })
 
    observeEvent(input$au3_map, {
       sessionvars$page <- 5
-      output$main <- renderUI(leafletOutput("suburbmap"))
+      output$main <- renderUI(leafletOutput("suburbmap", height=550, width=442))
       output$suburbmap <- renderLeaflet(fetchmap(3))
    })
 
    observeEvent(input$au4_map, {
       sessionvars$page <- 5
-      output$main <- renderUI(leafletOutput("suburbmap"))
+      output$main <- renderUI(leafletOutput("suburbmap", height=550, width=442))
       output$suburbmap <- renderLeaflet(fetchmap(4))
    })
 
    observeEvent(input$au2_map, {
       sessionvars$page <- 5
-      output$main <- renderUI(leafletOutput("suburbmap"))
+      output$main <- renderUI(leafletOutput("suburbmap", height=550, width=442))
       output$suburbmap <- renderLeaflet(fetchmap(4))
    })
 
