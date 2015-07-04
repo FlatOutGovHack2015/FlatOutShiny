@@ -1,7 +1,8 @@
 Make sure you have the following R packages installed:
 
+* shiny
 * leaflet (<code>devtools::install_github('rstudio/leaflet')</code>)
-* rgdal
+* sp
 
 Then just run:
 
