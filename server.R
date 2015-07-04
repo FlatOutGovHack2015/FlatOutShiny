@@ -12,13 +12,13 @@ shinyServer(function(input, output, session){
    topPage <- function(){
       sessionvars$page <- 1
       list(
-         div(style="display:block; padding: 5px;",
+         div(style="display:block; padding: 5px; width: 320px; margin-left: auto; margin-right: auto;",
             actionButton("singleparentbutton", "Single Parent", width=150),
             actionButton("studentbutton", "Student", width=150)),
-         div(style="display:block; padding: 5px;",
+         div(style="display:block; padding: 5px; width: 320px; margin-left: auto; margin-right: auto;",
             actionButton("familybutton", "Family", width=150),
             actionButton("youngprofessionalbutton", "Young Professional", width=150)),
-         div(style="display:block; padding: 5px;",
+         div(style="display:block; padding: 5px; width: 320px; margin-left: auto; margin-right: auto;",
             actionButton("custombutton", "Custom", width=305))
       )
    }
@@ -76,9 +76,9 @@ shinyServer(function(input, output, session){
       au <- suburbrecs()[n]
       nme <- aushp@data[aushp@data$au2015==au, "au2015_nam"]
       condition <- paste0("input.au", au, " % 2")
-      res <- list(div(style="display:block; padding: 5px;",
+      res <- list(div(style="display:block; padding: 5px;  width: 320px; margin-left: auto; margin-right: auto;",
                       actionButton(paste0("au", au), nme, width=303)),
-                  conditionalPanel(condition, div(style="display:block; padding: 5px;",
+                  conditionalPanel(condition, div(style="display:block; padding: 5px;  width: 320px; margin-left: auto; margin-right: auto;",
                      actionButton(paste0("au", n, "_map"), "map", width=150),
                      actionButton(paste0("au", n, "_houses"), "houses", width=150)
                   )))
