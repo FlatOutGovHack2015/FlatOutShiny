@@ -29,6 +29,13 @@ shinyServer(function(input, output, session){
    #checkbox list of important POIs.
    #clicking next2 will store choices in POIs session variable.
    #enumerated list as described below.  e.g. "Work" has value 1...
+   foo <- function(str){
+      if (str=="singleparent") "Single Parent"
+      else if (str=="youngprofessional") "Young Professional"
+      else if (str=="student") "Student"
+      else if (str=="family") "Two Parent Family"
+      else "Custom"
+   }
    choices <- reactive({
       selected <- c()
       if (sessionvars$profile=="singleparent") selected <- c(1,2,4,7,9)
@@ -36,7 +43,7 @@ shinyServer(function(input, output, session){
       else if (sessionvars$profile=="student") selected <- c(3,4,6,9,10,12)
       else if (sessionvars$profile=="family") selected <- c(3,4,6,7,8)
       else if (sessionvars$profile=="custom") selected <- c()
-      list(h2(sessionvars$profile), checkboxGroupInput("choices", "",
+      list(h2(foo(sessionvars$profile)), checkboxGroupInput("choices", "",
          choices=list("Work"=1, "Supermarket"=2, "Sports clubs"=3,
             "School (specific)"=4, "Transport"=5, "Parking"=6, "Gym"=7,
             "Farmer's market"=8, "Daycare (for children)"=9, "Church"=10,
