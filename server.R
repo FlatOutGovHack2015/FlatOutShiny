@@ -1,3 +1,5 @@
+library(leaflet)
+
 shinyServer(function(input, output, session){
 
    sessionvars <- reactiveValues(profile="", page="1")
@@ -14,7 +16,8 @@ shinyServer(function(input, output, session){
    )
 
    locations <- list(
-      div(actionButton("next1", "next"))
+      leafletOutput("map1"),
+      div(actionButton("next1", "next"), style="display: inline-block; float: right; ")
    )
 
    choices <- reactive({
@@ -63,5 +66,9 @@ shinyServer(function(input, output, session){
 
    observeEvent(input$next1, {
       output$main <- renderUI(choices())
+   })
+
+   output$map1 <- renderLeaflet({
+      leaflet() %>% addTiles()
    })
 })
