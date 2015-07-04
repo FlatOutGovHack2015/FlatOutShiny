@@ -1,0 +1,8 @@
+---
+title: "Readme"
+author: "Chris Hansen"
+date: "7/4/2015"
+output: html_document
+---
+
+<code>shiny::runGitHub(repo="FlatOutGovHack2015/FlatOutShiny")</code>
