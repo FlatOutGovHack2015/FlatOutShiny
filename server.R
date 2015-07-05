@@ -56,7 +56,7 @@ shinyServer(function(input, output, session){
       else if (sessionvars$profile=="family") selected <- c(3,4,6,7,8)
       else if (sessionvars$profile=="custom") selected <- c()
       list(h2(foo(sessionvars$profile)), checkboxGroupInput("choices", "",
-            choices=list("Reserve Land"=1, "Playgrounds"=2, "Low Traffic"=3,
+         choices=list("Reserve Land"=1, "Playgrounds"=2, "Low Traffic"=3,
             "Beach/Coast"=4, "Pools"=5, "Libraries"=6, "Cinema"=7,
             "Bars & Clubs"=8, "Restaurants & Cafes"=9, "Primary Schools"=10,
             "Secondary Schools"=11, "Supermarkets"=12, "Rugby"=13,
@@ -95,7 +95,8 @@ shinyServer(function(input, output, session){
    suburbs <- reactive({
       sessionvars$page <- 4
       suburbs <- suburbrecs()
-      res <- list()
+      res <- list(div(h4("These results are hard coded. The algorithm runs here,
+                         but cannot complete without complete Census Data TBD")))
       if (length(suburbs)>0){
          for (i in 1:length(suburbs)){
             x <- suburbfactory(1)
