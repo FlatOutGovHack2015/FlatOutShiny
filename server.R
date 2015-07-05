@@ -61,17 +61,32 @@ shinyServer(function(input, output, session){
             "Bars & Clubs"=8, "Restaurants & Cafes"=9, "Primary Schools"=10,
             "Secondary Schools"=11, "Supermarkets"=12, "Rugby"=13,
             "Soccer"=14, "Doctors"=15, "Gyms"=16), selected
-      ), div(actionButton("next2", "next"), style="display: inline-block; float: right; "))
+      ),div(actionButton("next2", "next"), style="display: inline-block; float: right; "))
    })
-
    #do some fancy stuff to get recommended suburbs
    #will run every time loc1 or POIs changes.
    #that might be too often.
    #currently I just cherry-picked 4 AUs
+   suburbData <- read.csv("HardData.csv")
    suburbrecs <- reactive({
-      sessionvars$loc1
-      sessionvars$POIs
-      return(c("575300", "573000", "573200", "575200"))
+      #sessionvars$loc1
+      #print(str(sessionvars$POIs))
+      suburbData$Score = 0
+      for(i in 1:nrow(suburbData)){
+         for (num in sessionvars$POIs){
+            num = as.numeric(num) + 2
+            #weight = 11 - rank
+            weight = 1
+            suburbData$Score[i] = suburbData$Score[i] + suburbData[i,num] * weight
+         }
+      }
+      #This is  Area Unit, Suburb Name, and Suburb Score
+      results <- suburbData[,c(1:2,length(suburbData))]
+      #Orders results by highest score
+      results <- results[order(results$Score, decreasing = TRUE),]
+      #Returns top 10 suburbs as Area Unit ID strings e.g.,
+      #return(c("575300", "573000", "573200", "575200"))
+      return(as.character(results$Suburb.ID[1:10]))
    })
 
    #factory method for suburb components
@@ -95,8 +110,7 @@ shinyServer(function(input, output, session){
    suburbs <- reactive({
       sessionvars$page <- 4
       suburbs <- suburbrecs()
-      res <- list(div(h4("These results are hard coded. The algorithm runs here,
-                         but cannot complete without complete Census Data TBD")))
+      res <- list(div(h4("Here are your results (still needs some shining, but close.)")))
       if (length(suburbs)>0){
          for (i in 1:length(suburbs)){
             x <- suburbfactory(1)
