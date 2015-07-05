@@ -29,6 +29,7 @@ shinyServer(function(input, output, session){
    locations <- function(){
       sessionvars$page <- 2
       list(
+         div(h3("Select locations that are important to you:")),
          leafletOutput("map1", height=550, width=442), p(),
          div(actionButton("next1", "next"), style="display: inline-block; float: right;")
       )
