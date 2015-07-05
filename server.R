@@ -56,11 +56,11 @@ shinyServer(function(input, output, session){
       else if (sessionvars$profile=="family") selected <- c(3,4,6,7,8)
       else if (sessionvars$profile=="custom") selected <- c()
       list(h2(foo(sessionvars$profile)), checkboxGroupInput("choices", "",
-         choices=list("Work"=1, "Supermarket"=2, "Sports clubs"=3,
-            "School (specific)"=4, "Transport"=5, "Parking"=6, "Gym"=7,
-            "Farmer's market"=8, "Daycare (for children)"=9, "Church"=10,
-            "Safety (Low crime-rate)"=11, "Bars / clubs"=12, "Cinemas"=13,
-            "Restaurants"=14, "School / uni"=15, "Mall"=16), selected
+            choices=list("Reserve Land"=1, "Playgrounds"=2, "Low Traffic"=3,
+            "Beach/Coast"=4, "Pools"=5, "Libraries"=6, "Cinema"=7,
+            "Bars & Clubs"=8, "Restaurants & Cafes"=9, "Primary Schools"=10,
+            "Secondary Schools"=11, "Supermarkets"=12, "Rugby"=13,
+            "Soccer"=14, "Doctors"=15, "Gyms"=16), selected
       ), div(actionButton("next2", "next"), style="display: inline-block; float: right; "))
    })
 
